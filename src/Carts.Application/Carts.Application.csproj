@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Carts.Domain\Carts.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

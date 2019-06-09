@@ -1,8 +1,9 @@
 ﻿using Carts.Domain.Common;
+using Carts.Infrastructure.Internal.EventStore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Carts.Infrastructure.EventStore
+namespace Carts.Infrastructure.Internal.InternalContracts
 {
     public interface IEventStore
     {
@@ -10,7 +11,7 @@ namespace Carts.Infrastructure.EventStore
 
         Task AppendEventsToStream(string streamName, IEnumerable<DomainEvent> domainEvents, int? expectedVersion);
 
-        Task<IEnumerable<DomainEvent>> GetStream(string streamName, int fromVersion, int toVersion);
+        Task<IEnumerable<EventWrapper>> GetStream(string streamName, int fromVersion, int toVersion);
 
         Task AddSnapshot<T>(string streamName, T snapshot);
 

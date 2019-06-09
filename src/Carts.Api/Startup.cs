@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Carts.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Carts.Infrastructure;
+using Carts.Infrastructure.Internal.EventStore;
+using Carts.Infrastructure.Internal.Repositories;
 
 namespace Carts.Api
 {
@@ -15,6 +19,10 @@ namespace Carts.Api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureInfrastructure();
+
+            services.AddSwaggerGen();
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,6 +37,9 @@ namespace Carts.Api
             {
                 await context.Response.WriteAsync("Hello World!");
             });
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
     }
 }

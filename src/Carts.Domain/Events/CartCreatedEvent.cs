@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Carts.Domain.Common;
+using System;
 
 namespace Carts.Domain.Events
 {
-    public sealed class CartCreatedEvent
+    public sealed class CartCreatedEvent : DomainEvent
     {
         public DateTime CartCreated { get; }
         public string UserId { get; }

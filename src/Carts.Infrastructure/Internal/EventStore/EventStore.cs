@@ -1,30 +1,16 @@
 ﻿using Carts.Domain.Common;
+using Carts.Infrastructure.Internal.InternalContracts;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MongoDB.Driver;
-using MongoDB.Driver.Core;
 
-namespace Carts.Infrastructure.EventStore
+namespace Carts.Infrastructure.Internal.EventStore
 {
     public class MongoEventStore : IEventStore
     {
-        private readonly IMongoClient mongoClient;
-        private readonly IMongoDatabase mongoDatabase;
-        private readonly IMongoCollection<EventWrapper> mongoCollection;
-
-        public MongoEventStore(IMongoClient mongoClient,
-                          IMongoDatabase mongoDatabase,
-                          IMongoCollection<EventWrapper> mongoCollection)
+        public MongoEventStore()
         {
-            this.mongoClient = mongoClient 
-                ?? throw new ArgumentNullException(nameof(mongoClient));
-
-            this.mongoDatabase = mongoDatabase
-                ?? throw new ArgumentNullException(nameof(mongoDatabase));
-
-            this.mongoCollection = mongoCollection
-                ?? throw new ArgumentNullException(nameof(mongoCollection));
+        
         }
 
         public Task AddSnapshot<T>(string streamName, T snapshot)
@@ -65,13 +51,5 @@ namespace Carts.Infrastructure.EventStore
         public int Version { get; set; }
 
         
-    }
-
-    public class EventWrapper
-    {
-        public string Id { get; set; }
-        public DomainEvent Event { get; set; }
-        public string EventStreamId { get; set; }
-        public int EventSequence { get; set; }
     }
 }
