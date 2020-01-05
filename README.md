@@ -1,5 +1,5 @@
 # event-sourced-carts-csharp
-A C# example of event sourcing and CQRS
+A ( very incomplete ) C# example of event sourcing and CQRS
 
 ### Table of Contents
 1. [Project Structure](#project-structure)
